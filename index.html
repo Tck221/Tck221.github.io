@@ -4,7 +4,8 @@
     <link rel="stylesheet" type="text/css" href="resource/css/mainstyle.css">
 </head>
 <body>
-<h1>YOU ENTER MY BLOG SERVER!</h1>
+<h1>YOU ENTER MY SERVER!</h1>
+<button type="button" onclick="changeStyle()">DANCE</button>
 <form>
     To See
     <input type="text" id="hrefff">
@@ -14,8 +15,11 @@
 </div>
 </body>
 <script>
+    //  用ajax返回文本数据并包装。
     var activedShowing = (function(){
-        var xajax , textDiv , input;
+        var xajax,
+            textDiv,
+            input;
         xajax   = new XMLHttpRequest();
         textDiv = document.getElementById("ajaxxx");
         input   = document.getElementById("hrefff");
@@ -29,15 +33,15 @@
                 console.log("Sucessed");
             }
             else if(this.status == 404){
-                textDiv.innerHTML = "404 NOT FOUND";
+                textDiv.innerHTML = "也没有吧就";
             }
             else if(this.status == 403){
                 //  现在大概不会出现
-                textDiv.innerHTML = "403 FORBIDEN";
+                textDiv.innerHTML = "不给你看吧就";
             }
             else if(!loadingflag){
-                textDiv.innerHTML = "LOADING";
-                loadingflag=true;
+                textDiv.innerHTML = "等等不会？";
+                loadingflag = true;
             }
         }
         console.log("initial aS");
@@ -60,8 +64,52 @@
         }
     })();
     function fmtTxt(value,index){
-        if(index==0)return "<h2>"+value+"</h2>";
-        else return "<p>"+value+"</p>";
+        if(index==0)
+            return "<h2>"+value+"</h2>";
+        else
+            return "<p>"+value+"</p>";
     }
+</script>
+<script>
+    //  让字和背景流畅的变色（有啥用？）
+    var changeStyle = (function(){
+        var bStyle = document.getElementsByTagName(body).style;
+        var x = 0,
+            y = 0,
+            z = 0;
+        var switcher = false;
+        function turnS(){
+            if(switcher)
+                switcher = false;
+            else
+                switcher = true;
+        }
+        function rgbccc(){
+            //  设定颜色如何变化
+            x = x + 1;
+            y = y + 2;
+            z = z + 3;
+            //  回归
+            if(x > 255)
+                x = x mod 256;
+            if(y > 255)
+                y = y mod 256;
+            if(z > 255)
+                z = z mod 256;
+            bStyle.color            = "rgb("+x+","+y+","+z+")"
+            bStyle.backgroundcolor  = "rgb("+(255-x)+","+(255-y)+","+(255-z)+")"
+        }
+        function reset(){
+            bStyle.color            = "#404"
+            bStyle.backgroundcolor  = "#afa"
+        }
+        return function(){
+            turnS();
+            if(swither)
+                setInterval(rgbccc,5);
+            else
+                clearInterval();
+        }
+    })();
 </script>
 </html>
