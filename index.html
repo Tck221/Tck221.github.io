@@ -5,10 +5,10 @@
 </head>
 <body>
 <h1>YOU ENTER MY SERVER!</h1>
-<button type="button" onclick="changeStyle()">DANCE</button>
 <form>
     To See
     <input type="text" id="hrefff">
+    <button type="button" onclick="changeStyle()">DANCE</button>
     <button type="button" onclick="activedShowing()">GO</button>
 </form>
 <div id="ajaxxx">
@@ -73,7 +73,7 @@
 <script>
     //  让字和背景流畅的变色（有啥用？）
     var changeStyle = (function(){
-        var bStyle = document.getElementsByTagName(body).style;
+        var bStyle = document.getElementsByTagName("body").style;
         var x = 0,
             y = 0,
             z = 0;
