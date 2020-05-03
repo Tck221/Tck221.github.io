@@ -1,2 +1,8 @@
 # simpleBlog.github.io
-build server by NodeJS
+
+#目标
+>NodeJS
+>Express
+>MySQL
+>H5CSSJS
+>React
