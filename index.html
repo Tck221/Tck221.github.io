@@ -5,6 +5,33 @@
 </head>
 <body>
 <h1>YOU ENTER MY BLOG SERVER!</h1>
-<p>To See MORE</p>
+<form>
+    To See
+    <input type="text" id="hrefff">
+    <br>
+    <button type="button" onclick="activedShowing()">GO</button>
+</form>
+<div id="ajaxxx">
+</div>
+<script>
+    var activedShowing = (function(){
+        var xajax , textDiv , input;
+        xajax   = new XMLHttpRequest();
+        textDiv = document.getElementById("ajaxxx");
+        input   = document.getElementById("hrefff");
+        console.log("initial aS");
+        return function(){
+            var numHref = input.value;
+            if(isNaN(numHref) || numHref < 1 || numHref > 7 || numHref === "")
+                input.value = "Not Good";
+            else{
+                var addr = "/blog/"+numHref+".txt"
+                xajax.open("GET",addr,false);
+                xajax.send();
+                textDiv.innerHTML = xajax.responseText;
+            }
+        }
+    })();
+</script>
 </body>
 </html>
