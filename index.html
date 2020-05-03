@@ -28,10 +28,19 @@
                 var addr = "/blog/"+numHref+".txt"
                 xajax.open("GET",addr,false);
                 xajax.send();
-                textDiv.innerHTML = xajax.responseText;
+                console.log("xajax.responseText");
+                //  textDiv.innerHTML = xajax.responseText;
+                //  这个返回也太丑了，，，，
+                //textDic.innerHTML = formatText(responseText);
             }
         }
     })();
+
+    function formatText(text){
+        //第一行作为标题
+        //之后每行颜色变化
+
+    }
 </script>
 </body>
 </html>
