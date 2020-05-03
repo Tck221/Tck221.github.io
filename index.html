@@ -20,16 +20,16 @@
         textDiv = document.getElementById("ajaxxx");
         input   = document.getElementById("hrefff");
         xajax.onreadystatechange = function(){
-            var textDiv = document.getElementById("ajaxxx");
+            //var textDiv = document.getElementById("ajaxxx");
             console.log(this.readyState+"  "+this.status);
             if (this.readyState == 4 && this.status == 200) {
                 var arrText = xajax.responseText.split("\n");
                 var arrText2 = arrText.map(fmtTxt);
-                textDic.innerHTML = arrText2.join("");
+                textDiv.innerHTML = arrText2.join("");
                 console.log("Sucessed");
             }
             else {
-                textDic.innerHTML = "404 NOT FOUND";
+                textDiv.innerHTML = "404 NOT FOUND";
             }
         }
         console.log("initial aS");
