@@ -17,6 +17,7 @@
     var activedShowing = (function(){
         var xajax , textDiv , input;
         xajax   = new XMLHttpRequest();
+        xajax.onreadystatechange = console.log(xajax.readyState+"  "+xajax.status);
         textDiv = document.getElementById("ajaxxx");
         input   = document.getElementById("hrefff");
         console.log("initial aS");
@@ -29,6 +30,7 @@
                 var addr = "/blog/"+numHref+".txt"
                 xajax.open("GET",addr,true);
                 xajax.send();
+                console.log(xajax.status)
                 //textDiv.innerHTML = xajax.responseText;
                 //  这个返回也太丑了，，，，
                 //textDic.innerHTML = formatText(responseText);
