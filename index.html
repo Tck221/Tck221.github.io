@@ -26,10 +26,10 @@
                 input.value = "Not Good";
             else{
                 var addr = "/blog/"+numHref+".txt"
-                xajax.open("GET",addr,false);
+                xajax.open("GET",addr,true);
                 xajax.send();
-                console.log("xajax.responseText");
-                //  textDiv.innerHTML = xajax.responseText;
+                console.log(xajax.responseText);
+                textDiv.innerHTML = xajax.responseText;
                 //  这个返回也太丑了，，，，
                 //textDic.innerHTML = formatText(responseText);
             }
