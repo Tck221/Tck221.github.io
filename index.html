@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="resource/css/mainstyle.css">
+    <!--link rel="stylesheet" type="text/css" href="resource/css/mainstyle.css"-->
 </head>
 <body>
 <h1>YOU ENTER MY SERVER!</h1>
@@ -98,7 +98,7 @@
             if(z > 255)
                 z = z % 256;
             bStyle.color            = "rgb("+x+","+y+","+z+")"
-            bStyle.backgroundcolor  = "rgb("+(255-x)+","+(255-y)+","+(255-z)+")"
+            bStyle.backgroundColor  = "rgb("+(x^255)+","+(y^255)+","+(z^255)+")"
         }
         function reset(ci){
             bStyle.color            = "#404";
@@ -114,5 +114,8 @@
                 reset(ci);
         }
     })();
+</script>
+<script>
+    //  自动滚动的DIV
 </script>
 </html>
