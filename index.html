@@ -17,9 +17,20 @@
     var activedShowing = (function(){
         var xajax , textDiv , input;
         xajax   = new XMLHttpRequest();
-        xajax.onreadystatechange = console.log(xajax.readyState+"  "+xajax.status);
         textDiv = document.getElementById("ajaxxx");
         input   = document.getElementById("hrefff");
+        xajax.onreadystatechange = function(){
+            console.log(this.readyState+"  "+this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                var arrText = xajax.responseText.split("\n");
+                var arrText2 = arrText.map(fmtTxt);
+                textDic.innerHTML = arrText2.join("");
+                console.log("Sucessed");
+            }
+            else {
+                textDic.innerHTML = "404 NOT FOUND";
+            }
+        }
         console.log("initial aS");
         return function(){
             var numHref = input.value;
@@ -30,13 +41,12 @@
                 var addr = "/blog/"+numHref+".txt"
                 xajax.open("GET",addr,true);
                 xajax.send();
-                console.log(xajax.status)
                 //textDiv.innerHTML = xajax.responseText;
                 //  这个返回也太丑了，，，，
                 //textDic.innerHTML = formatText(responseText);
-                var arrText = xajax.responseText.split("\n");
-                var arrText2 = arrText.map(fmtTxt);
-                textDic.innerHTML = arrText2.join("");
+                //var arrText = xajax.responseText.split("\n");
+                //var arrText2 = arrText.map(fmtTxt);
+                //textDic.innerHTML = arrText2.join("");
             }
         }
     })();
