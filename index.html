@@ -91,24 +91,26 @@
             z = z + 3;
             //  回归
             if(x > 255)
-                x = x mod 256;
+                x = x % 256;
             if(y > 255)
-                y = y mod 256;
+                y = y % 256;
             if(z > 255)
-                z = z mod 256;
+                z = z % 256;
             bStyle.color            = "rgb("+x+","+y+","+z+")"
             bStyle.backgroundcolor  = "rgb("+(255-x)+","+(255-y)+","+(255-z)+")"
         }
         function reset(){
-            bStyle.color            = "#404"
-            bStyle.backgroundcolor  = "#afa"
+            bStyle.color            = "#404";
+            bStyle.backgroundcolor  = "#afa";
+            clearInterval();
         }
+        console.log("initial cS");
         return function(){
             turnS();
             if(swither)
                 setInterval(rgbccc,5);
             else
-                clearInterval();
+                reset();
         }
     })();
 </script>
