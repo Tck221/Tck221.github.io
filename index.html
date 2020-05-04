@@ -1,15 +1,19 @@
 <!doctype html>
 <html>
 <head>
-    <!--link rel="stylesheet" type="text/css" href="resource/css/mainstyle.css"-->
+    <link rel="stylesheet" type="text/css" href="resource/css/mainstyle.css">
 </head>
 <body>
-<h1>YOU ENTER MY SERVER!</h1>
+<h1>YOU ENTER MY HOMO!</h1>
 <form>
     To See
     <input type="text" id="hrefff">
-    <button type="button" onclick="changeStyle()">DANCE</button>
     <button type="button" onclick="activedShowing()">GO</button>
+    <br>
+    To Dance
+    <button type="button" onclick="streamer()">Streamer </button>
+    <button type="button" onclick="flashbang()">Flashbang</button>
+    <button type="button" onclick="spotlightBall()">Spotlight ball</button>
 </form>
 <div id="ajaxxx">
 </div>
@@ -44,7 +48,12 @@
                 loadingflag = true;
             }
         }
-        console.log("initial aS");
+        function fmtTxt(value,index){
+            if(index==0)
+                return "<h2>"+value+"</h2>";
+            else
+                return "<p>"+value+"</p>";
+        }
         return function(){
             var numHref = input.value;
             textDiv.innerHTML = "";
@@ -63,16 +72,10 @@
             }
         }
     })();
-    function fmtTxt(value,index){
-        if(index==0)
-            return "<h2>"+value+"</h2>";
-        else
-            return "<p>"+value+"</p>";
-    }
 </script>
 <script>
     //  让字和背景平滑变色（有啥用？）
-    var changeStyle = (function(){
+    var streamer = (function(){
         var bStyle = document.body.style;
         var switcher = false;
         var ci = 0;
@@ -99,13 +102,55 @@
                 a = "0" + a;
             return a;
         }
-        console.log("initial cS");
-        return function(){
+        return function(classname){
             if(turnS())
-                ci = setInterval(runrgb,50);
+                ci = setInterval(runrgb,16);
             else
                 clearInterval(ci);
         }
     })();
+</script>
+<script>
+    //  Flashbang  全白>慢慢变黑
+    flashbang =(function(){
+        var bStyle = document.body.style;
+        var ci = 0;
+        var colorI = 16777215;
+        function reset(){
+            colorI = 16777215;
+            clearInterval(ci);
+            bStyle.backgroundColor = "#ffffff";
+            bStyle.color = "#ffffff";
+        }
+        function fmtColor(color){
+            var a = color.toString(16);
+            var b = 0;
+            var c = 6 - a.length;
+            for(b = 0 ; b < c ; b++)
+                a = "0" + a;
+            return a;
+        }
+        return function(){
+            reset();
+            ci=setInterval(function(){
+                colorI = colorI - 197379;
+                bStyle.backgroundColor = "#" + fmtColor(colorI);
+                if(colorI <= 0)
+                    clearInterval(ci);
+            },16);
+        }
+    })();
+</script>
+<script>
+    //  spotlightBall  屏幕分为十六个区块 随机流畅变化 流光类
+    function spotlight(selTor,selName,color){
+        this.selTor = selTor;
+        this.selName = selName;
+        this.color = color;
+    }
+
+
+
+
 </script>
 </html>
