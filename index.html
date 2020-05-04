@@ -104,8 +104,8 @@
                 }
                 else v=v-c;
             }
-            arr[ind][0]=f;
-            arr[ind][1]=v;
+            arr[ind]=[f,v,c];
+            console.log(arr);
         }
         function turnS(){
             if(switcher)
@@ -120,9 +120,8 @@
             x=color[0][2];
             y=color[1][2];
             z=color[2][2];
-            bStyle.color            = "rgb("+x+","+y+","+z+")"
-            bStyle.backgroundColor  = "rgb("+(x^255)+","+(y^255)+","+(z^255)+")"
-            console.log("runrgb"+x+" "+y+" "+z);
+            bStyle.color            = "rgb("+x+","+y+","+z+")";
+            bStyle.backgroundColor  = "rgb("+(x^255)+","+(y^255)+","+(z^255)+")";
         }
         console.log("initial cS");
         return function(){
