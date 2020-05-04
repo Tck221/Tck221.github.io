@@ -89,7 +89,7 @@
         }
         function runrgb(){
             //  一次变化 一次更新
-            color = color + 397581;
+            color = color + 197125;
             if(color > 16777215) color = color % 16777216;
             bStyle.color = "#" + fmtColor(color);
             bStyle.backgroundColor = "#" + fmtColor(16777215 - color);
@@ -143,12 +143,12 @@
 </script>
 <script>
     //  spotlightBall  屏幕分为十六个区块 随机流畅变化 流光类
-    function spotlight(selTor,selName,color){
+    function spotlight(selTor,selName,color) {
         this.selTor = selTor;
         this.selName = selName;
+        //  初始颜色
         this.color = color;
     }
-
 
 
 
