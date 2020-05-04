@@ -51,7 +51,7 @@
             if(isNaN(numHref) || numHref < 1 || numHref > 7 || numHref === "")
                 input.value = "Not Good";
             else{
-                var addr = "/blog/"+numHref+".txt"
+                var addr = "/blog/"+numHref+".txt";
                 xajax.open("GET",addr,true);
                 xajax.send();
                 //textDiv.innerHTML = xajax.responseText;
@@ -71,42 +71,12 @@
     }
 </script>
 <script>
-    //  让字和背景流畅的变色（有啥用？）
+    //  让字和背景平滑变色（有啥用？）
     var changeStyle = (function(){
         var bStyle = document.body.style;
         var switcher = false;
         var ci = 0;
-        var x = 0,
-            y = 0,
-            z = 0;
-        //  [变化方向,值,趋势]
-        var color=[[true,0,7],[true,0,5],[true,0,4]];
-        function setrgb(c){
-            color.forEach(function(v,i,a){
-                a[i][3]=c[i];
-            })
-        }
-        function changergb(val,ind,arr){
-            var f=val[0];
-            var v=val[1];
-            var c=val[2];
-            if(f){
-                if(v+c>255){
-                    v=510-v-c;
-                    f=!f;
-                }
-                else v=v+c;
-            }
-            else{
-                if(v-c<0){
-                    v=c-v;
-                    f=!f;
-                }
-                else v=v-c;
-            }
-            arr[ind]=[f,v,c];
-            console.log(arr);
-        }
+        var color = 0;
         function turnS(){
             if(switcher)
                 switcher = false;
@@ -116,12 +86,18 @@
         }
         function runrgb(){
             //  一次变化 一次更新
-            color.forEach(changergb);
-            x=color[0][2];
-            y=color[1][2];
-            z=color[2][2];
-            bStyle.color            = "rgb("+x+","+y+","+z+")";
-            bStyle.backgroundColor  = "rgb("+(x^255)+","+(y^255)+","+(z^255)+")";
+            color = color + 397581;
+            if(color > 16777215) color = color % 16777216;
+            bStyle.color = "#" + fmtColor(color);
+            bStyle.backgroundColor = "#" + fmtColor(16777215 - color);
+        }
+        function fmtColor(color){
+            var a = color.toString(16);
+            var b = 0;
+            var c = 6 - a.length;
+            for(b = 0 ; b < c ; b++)
+                a = "0" + a;
+            return a;
         }
         console.log("initial cS");
         return function(){
@@ -131,8 +107,5 @@
                 clearInterval(ci);
         }
     })();
-</script>
-<script>
-    //  自动滚动的DIV
 </script>
 </html>
