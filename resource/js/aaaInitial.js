@@ -1,1 +1,1 @@
-import '/flashbang.js'
+import '/resource/js/flashbang.js'
