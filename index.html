@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="resource/css/mainstyle.css">
+    <script type="module" src="resource/js/aaaInitial.js"></script>
 </head>
 <body>
 <h1>YOU ENTER MY HOMO!</h1>
@@ -13,144 +14,12 @@
     To Dance
     <button type="button" onclick="streamer()">Streamer </button>
     <button type="button" onclick="flashbang()">Flashbang</button>
-    <button type="button" onclick="spotlightBall()">Spotlight ball</button>
 </form>
-<div id="ajaxxx">
+<div id="ajaxxx"></div>
+<div id="gameground">
 </div>
 </body>
-<script>
-    //  用ajax返回文本数据并包装。
-    var activedShowing = (function(){
-        var xajax,
-            textDiv,
-            input;
-        xajax   = new XMLHttpRequest();
-        textDiv = document.getElementById("ajaxxx");
-        input   = document.getElementById("hrefff");
-        xajax.onreadystatechange = function(){
-            console.log(this.readyState+"  "+this.status+"   "+this.statusText);
-            var loadingflag = false;
-            if (this.readyState == 4 && this.status == 200) {
-                var arrText = xajax.responseText.split("\n");
-                var arrText2 = arrText.map(fmtTxt);
-                textDiv.innerHTML = arrText2.join("");
-                console.log("Sucessed");
-            }
-            else if(this.status == 404){
-                textDiv.innerHTML = "也没有吧就";
-            }
-            else if(this.status == 403){
-                //  现在大概不会出现
-                textDiv.innerHTML = "不给你看吧就";
-            }
-            else if(!loadingflag){
-                textDiv.innerHTML = "等等不会？";
-                loadingflag = true;
-            }
-        }
-        function fmtTxt(value,index){
-            if(index==0)
-                return "<h2>"+value+"</h2>";
-            else
-                return "<p>"+value+"</p>";
-        }
-        return function(){
-            var numHref = input.value;
-            textDiv.innerHTML = "";
-            if(isNaN(numHref) || numHref < 1 || numHref > 7 || numHref === "")
-                input.value = "Not Good";
-            else{
-                var addr = "/blog/"+numHref+".txt";
-                xajax.open("GET",addr,true);
-                xajax.send();
-                //textDiv.innerHTML = xajax.responseText;
-                //  这个返回也太丑了，，，，
-                //textDic.innerHTML = formatText(responseText);
-                //var arrText = xajax.responseText.split("\n");
-                //var arrText2 = arrText.map(fmtTxt);
-                //textDic.innerHTML = arrText2.join("");
-            }
-        }
-    })();
-</script>
-<script>
-    //  让字和背景平滑变色（有啥用？）
-    var streamer = (function(){
-        var bStyle = document.body.style;
-        var switcher = false;
-        var ci = 0;
-        var color = 0;
-        function turnS(){
-            if(switcher)
-                switcher = false;
-            else
-                switcher = true;
-            return switcher;
-        }
-        function runrgb(){
-            //  一次变化 一次更新
-            color = color + 197125;
-            if(color > 16777215) color = color % 16777216;
-            bStyle.color = "#" + fmtColor(color);
-            bStyle.backgroundColor = "#" + fmtColor(16777215 - color);
-        }
-        function fmtColor(color){
-            var a = color.toString(16);
-            var b = 0;
-            var c = 6 - a.length;
-            for(b = 0 ; b < c ; b++)
-                a = "0" + a;
-            return a;
-        }
-        return function(classname){
-            if(turnS())
-                ci = setInterval(runrgb,16);
-            else
-                clearInterval(ci);
-        }
-    })();
-</script>
-<script>
-    //  Flashbang  全白>慢慢变黑
-    flashbang =(function(){
-        var bStyle = document.body.style;
-        var ci = 0;
-        var colorI = 16777215;
-        function reset(){
-            colorI = 16777215;
-            clearInterval(ci);
-            bStyle.backgroundColor = "#ffffff";
-            bStyle.color = "#ffffff";
-        }
-        function fmtColor(color){
-            var a = color.toString(16);
-            var b = 0;
-            var c = 6 - a.length;
-            for(b = 0 ; b < c ; b++)
-                a = "0" + a;
-            return a;
-        }
-        return function(){
-            reset();
-            ci=setInterval(function(){
-                colorI = colorI - 197379;
-                bStyle.backgroundColor = "#" + fmtColor(colorI);
-                if(colorI <= 0)
-                    clearInterval(ci);
-            },16);
-        }
-    })();
-</script>
-<script>
-    //  spotlightBall  屏幕分为十六个区块 随机流畅变化 流光类
-    function spotlight(selTor,selName,color) {
-        this.selTor = selTor;
-        this.selName = selName;
-        //  初始颜色
-        this.color = color;
-    }
-
-
-
-</script>
+<!--script src="resource/js/activedShowing.js"></script>
+<script src="resource/js/streamer.js"></script>
+<script src="resource/js/flashbang.js"></script-->
 </html>
