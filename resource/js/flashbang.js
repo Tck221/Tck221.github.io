@@ -28,5 +28,3 @@ var flashbang =(function(){
         },16);
     }
 })();
-
-export.flashbang = flashbang;

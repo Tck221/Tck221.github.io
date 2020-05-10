@@ -39,7 +39,7 @@ var activedShowing = (function(){
     }
     return function(){
         var numHref = input.value;
-        textDiv.innerHTML = "";
+        textDiv.innerHTML = "  ";
         if(isNaN(numHref) || numHref < 1 || numHref > 7 || numHref === "")
             input.value = "Not Good";
         else{
