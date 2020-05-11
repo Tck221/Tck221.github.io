@@ -17,17 +17,17 @@ var activedShowing = (function(){
             console.log("Sucessed");
         }
         else if(this.status == 404){
-            textDiv.innerHTML = "没";
+            textDiv.innerHTML = "404";
         }
         else if(this.status == 403){
             //  现在大概不会出现
-            textDiv.innerHTML = "不";
+            textDiv.innerHTML = "403";
         }
         else if(this.status == 0 && this.readyState == 4){
-            textDiv.innerHTML = "滚";
+            textDiv.innerHTML = "000";
         }
         else if(!loadingflag){
-            textDiv.innerHTML = "等";
+            textDiv.innerHTML = "201";
             loadingflag = true;
         }
     }
